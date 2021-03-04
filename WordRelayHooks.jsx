@@ -1,5 +1,4 @@
-const React = require("react");
-const { useState, useRef } = React;
+import React, { useState, useRef } from "react";
 
 const WordRelayHooks = () => {
   const [word, setWord] = useState("삼라");
@@ -8,7 +7,7 @@ const WordRelayHooks = () => {
 
   const refInput = useRef();
 
-  onSubmitForm = (e) => {
+  const onSubmitForm = (e) => {
     e.preventDefault();
     if (word[word.length - 1] === value[0]) {
       setResult("딩동댕");
@@ -20,7 +19,7 @@ const WordRelayHooks = () => {
     refInput.current.focus();
   };
 
-  onChangeInput = (e) => {
+  const onChangeInput = (e) => {
     setValue(e.target.value);
   };
 
@@ -34,11 +33,11 @@ const WordRelayHooks = () => {
           value={value}
           onChange={onChangeInput}
         />
-        <button type="submit">클립!</button>
+        <button type="submit">클릭!</button>
       </form>
       <div>{result}</div>
     </>
   );
 };
 
-module.exports = WordRelayHooks;
+export default WordRelayHooks;

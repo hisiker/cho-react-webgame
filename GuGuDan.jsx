@@ -1,5 +1,6 @@
-const React = require("react");
-const { useState, useRef } = React; // 구조분해 문법.
+import React, { useState, useRef } from "react";
+// const React = require("react");
+// const { useState, useRef } = React; // 구조분해 문법.
 
 const GuGuDan = () => {
   const [first, setFirst] = useState(Math.ceil(Math.random() * 9));
@@ -39,4 +40,4 @@ const GuGuDan = () => {
   );
 };
 
-module.exports = GuGuDan;
+export default GuGuDan;

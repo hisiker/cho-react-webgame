@@ -1,5 +1,6 @@
-const React = require("react");
-const { Component } = React;
+import React, { Component } from "react";
+// const React = require("react");
+// const { Component } = React;
 
 class WordRelay extends Component {
   constructor(props) {
@@ -55,4 +56,4 @@ class WordRelay extends Component {
   }
 }
 
-module.exports = WordRelay;
+export default WordRelay;
