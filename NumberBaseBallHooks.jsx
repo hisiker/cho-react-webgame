@@ -18,13 +18,6 @@ const NumberBaseBall = () => {
   const [answer, setAnswer] = useState(getNumbers());
   const [tries, setTries] = useState([]);
 
-  // state = {
-  //   result: "",
-  //   value: "",
-  //   answer: getNumbers(),
-  //   tries: [],
-  // };
-
   const onSubmitForm = (e) => {
     e.preventDefault();
 
@@ -49,32 +42,16 @@ const NumberBaseBall = () => {
 
     if (strike === 4) {
       setResult("HomeRun!!!!!!!!!!!");
-      setTries([...tries, { try: value, result: outStr }]);
-      // this.setState({
-      //   result: "HomeRun!!!!!!!!!!!",
-      //   tries: [...this.state.tries, { try: this.state.value, result: outStr }],
-      // });
+      setTries((prevTries) => [...prevTries, { try: value, result: outStr }]);
       alert("게임을 재시작합니다.");
       setResult("");
       setValue("");
       setAnswer(getNumbers());
       setTries([]);
-      // this.setState({
-      //   result: "",
-      //   value: "",
-      //   answer: getNumbers(),
-      //   tries: [],
-      // });
     } else {
       setResult(`남은 기회 ${10 - tries.length - 1}.`);
       setValue("");
-      setTries([...tries, { try: value, result: outStr }]);
-      // this.setState({
-      //   result: `남은 기회 ${10 - this.state.tries.length - 1}.`,
-      //   value: "",
-      //   tries: [...this.state.tries, { try: this.state.value, result: outStr }],
-      // });
-
+      setTries((prevTries) => [...prevTries, { try: value, result: outStr }]);
       if (tries.length === 9) {
         alert("게임을 재시작합니다.");
         setResult("");
@@ -87,9 +64,6 @@ const NumberBaseBall = () => {
 
   const onChangeInput = (e) => {
     setValue(e.target.value);
-    // this.setState({
-    //   value: e.target.value,
-    // });
   };
 
   return (
@@ -101,7 +75,7 @@ const NumberBaseBall = () => {
       <div>시도: {tries.length}</div>
       <ul>
         {tries.map((v, i) => (
-          <TryLogHooks key={i+ 1} tryList={v} />
+          <TryLogHooks key={i + 1} tryList={v} />
         ))}
       </ul>
     </>

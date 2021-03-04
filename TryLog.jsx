@@ -1,11 +1,13 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 
-class TryLog extends Component {
+class TryLog extends PureComponent {
   render() {
+    const { tryList } = this.props;
     return (
-      <>
-        <li>{`${this.props.tryList.try} [ ${this.props.tryList.result}] `}</li>
-      </>
+      <li>
+        <div>{tryList.try}</div>
+        <div>{tryList.result}</div>
+      </li>
     );
   }
 }
