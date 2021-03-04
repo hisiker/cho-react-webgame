@@ -9,7 +9,7 @@ import WordRelayHooks from "./WordRelayHooks";
 import NumberBaseBall from "./NumberBaseBall";
 import NumberBaseBallHooks from "./NumberBaseBallHooks";
 
-ReactDOM.render(<NumberBaseBallHooks />, document.querySelector("#root"));
+ReactDOM.render(<NumberBaseBall />, document.querySelector("#root"));
 
 // Project is running at http://localhost:8080/
 

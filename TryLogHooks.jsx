@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
-const TryLog = (props) => {
+const TryLog = ({ tryList }) => {
   return (
     <>
-      <li>{`${props.tryList.try} [ ${props.tryList.result}] `}</li>
+      <li>{`${tryList.try} [ ${tryList.result}] `}</li>
     </>
   );
 };

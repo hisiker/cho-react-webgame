@@ -101,7 +101,7 @@ const NumberBaseBall = () => {
       <div>시도: {tries.length}</div>
       <ul>
         {tries.map((v, i) => (
-          <TryLogHooks key={i} tryList={v} />
+          <TryLogHooks key={i+ 1} tryList={v} />
         ))}
       </ul>
     </>

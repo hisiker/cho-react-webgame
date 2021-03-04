@@ -23,14 +23,16 @@ class NumberBaseBall extends Component {
   onSubmitForm = (e) => {
     e.preventDefault();
 
-    if (this.state.value.length !== 4) return;
+    const { value, answer, tries } = this.state;
 
-    const intValue = this.state.value.split("").map((v) => parseInt(v));
+    if (value.length !== 4) return;
+
+    const intValue = value.split("").map((v) => parseInt(v));
 
     let strike = 0;
     let ball = 0;
 
-    this.state.answer.forEach((v, i) => {
+    answer.forEach((v, i) => {
       if (intValue.includes(v)) {
         if (intValue.indexOf(v) === i) {
           ++strike;
@@ -42,9 +44,11 @@ class NumberBaseBall extends Component {
 
     const outStr = `${strike} S  ${ball} B`;
     if (strike === 4) {
-      this.setState({
-        result: "HomeRun!!!!!!!!!!!",
-        tries: [...this.state.tries, { try: this.state.value, result: outStr }],
+      this.setState((prevState) => {
+        return {
+          result: "HomeRun!!!!!!!!!!!",
+          tries: [...prevState.tries, { try: value, result: outStr }],
+        };
       });
       alert("게임을 재시작합니다.");
       this.setState({
@@ -54,13 +58,16 @@ class NumberBaseBall extends Component {
         tries: [],
       });
     } else {
-      this.setState({
-        result: `남은 기회 ${10 - this.state.tries.length - 1}.`,
-        value: "",
-        tries: [...this.state.tries, { try: this.state.value, result: outStr }],
+      // 예전 스테이트를 이용해서 스테이트를 변경할 때는 함수형 스테이트를 사용한다.
+      this.setState((prevState) => {
+        return {
+          result: `남은 기회 ${10 - tries.length - 1}.`,
+          value: "",
+          tries: [...prevState.tries, { try: value, result: outStr }],
+        };
       });
 
-      if (this.state.tries.length === 9) {
+      if (tries.length === 9) {
         alert("게임을 재시작합니다.");
         this.setState({
           result: "",
@@ -79,21 +86,22 @@ class NumberBaseBall extends Component {
   };
 
   render() {
+    const { result, value, tries } = this.state;
     return (
       <>
-        <h1>{this.state.result}</h1>
+        <h1>{result}</h1>
         <form onSubmit={this.onSubmitForm}>
           <input
             maxLength="4"
-            value={this.state.value}
+            value={value}
             onChange={this.onChangeInput}
             autoFocus
           />
         </form>
-        <div>시도: {this.state.tries.length}</div>
+        <div>시도: {tries.length}</div>
         <ul>
-          {this.state.tries.map((v, i) => (
-            <TryLog key={i} tryList={v} />
+          {tries.map((v, i) => (
+            <TryLog key={i + 1} tryList={v} />
           ))}
         </ul>
       </>
